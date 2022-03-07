@@ -27,7 +27,20 @@ namespace Torres_de_Hanoi
         {
             Size = 0;
             Top = 0;
-            Elementos = new List<Disco>();//revisar
+            Elementos = new List<Disco>();
+        }
+
+        public Pila(int n)
+        {
+            Size = n;
+            Top = 1;
+ 
+            for (int i = 1; i == n; i++)
+            {
+                Disco disco = new Disco();
+                disco.Valor = i;
+                Elementos.Add(disco); 
+            };
         }
 
         public void push(Disco d)
