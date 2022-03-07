@@ -14,11 +14,11 @@ namespace Torres_de_Hanoi
         {
             if (a.Top > b.Top)
             {
-                a.push(b.pop);
+                a.push(b.pop());
             }
             if (b.Top > a.Top)
             {
-                b.push(a.pop);
+                b.push(a.pop());
             }
             movimientos++;
         }
