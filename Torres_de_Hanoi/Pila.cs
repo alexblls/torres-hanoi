@@ -13,31 +13,49 @@ namespace Torres_de_Hanoi
         public int Top { get; set; }
         public String Top { get; set; }        
         */
+
+        public int Top { get; set; }
         /* TODO: Elegir tipo de Elementos
         public Disco[] Elementos { get; set; }
         public List<Disco> Elementos { get; set; }
         */
 
+        public List<Disco> Elementos { get; set; }
+
         /* TODO: Implementar métodos */
         public Pila()
         {
-
+            Size = 0;
+            Top = 0;
+            Elementos = new List<Disco>();//revisar
         }
 
         public void push(Disco d)
         {
-
+            Elementos.Add(d);
         }
 
         public Disco pop()
         {
-            return null;
-        }                
+            if (!isEmpty())
+            {
+                //Elimina el elemento de la lista en la primera posicion
+                Disco discoArriba = Elementos.Last();
+                Elementos.RemoveAt(Elementos.Count - 1);
+                return discoArriba;
+            }
+            else
+            {
+                return null;
+            }
+        }
 
         public bool isEmpty()
         {
-            return true;
+            if (Size == 0)
+                return true;
+            else
+                return false;
         }
-
     }
 }
