@@ -25,17 +25,16 @@ namespace Torres_de_Hanoi
 
             Pila AUX = new Pila();
 
-            for (int i = 1; i <= nDiscos; i++)
-            {
-                Disco d = new Disco();
-                d.Valor = i;
-                INI.Elementos.Add(d);
-            }
+            //for (int i = 1; i <= nDiscos; i++)
+            //{
+            //    Disco d = new Disco();
+            //    d.Valor = i;
+            //    INI.Elementos.Add(d);
+            //}
 
             Hanoi hanoi = new Hanoi();
 
             hanoi.iterativo(nDiscos, INI, FIN, AUX);
-            Console.WriteLine(nDiscos);
         }
     }
 }

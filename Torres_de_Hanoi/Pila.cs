@@ -39,17 +39,12 @@ namespace Torres_de_Hanoi
             Top = 1;
             Elementos = new List<Disco>();
 
-            for (int i = 1; i == n; i++)
+            for (int i = 1; i <= n; i++)
             {
                 Disco disco = new Disco();
                 disco.Valor = i;
                 Elementos.Add(disco);
             };
-        }
-
-        public override string ToString()
-        {
-            return base.ToString(); 
         }
 
         public void push(Disco d)
@@ -59,9 +54,8 @@ namespace Torres_de_Hanoi
 
         public Disco pop()
         {
-            //Elimina el elemento de la lista en la primera posicion
             Disco discoArriba = Elementos.First();
-            Elementos.RemoveAt(0);
+            
             Size = Elementos.Count;
             if (Elementos.Count == 0)
             {
@@ -71,8 +65,8 @@ namespace Torres_de_Hanoi
             {
                 Top = Elementos.First().Valor;
             }
+            Elementos.RemoveAt(0);
             return discoArriba;
-      
         }
 
         public bool isEmpty()

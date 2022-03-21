@@ -22,13 +22,13 @@ namespace Torres_de_Hanoi
                 {
                     b.push(a.pop());
                 }
-                else if (a.Top > b.Top)
+                else if (a.Elementos.First().Valor < b.Elementos.First().Valor)
                 {
-                    a.push(b.pop());
+                    b.push(a.pop());
                 }
                 else
                 {
-                    b.push(a.pop());
+                    a.push(b.pop());
                 }
                 
                 movimientos++;
