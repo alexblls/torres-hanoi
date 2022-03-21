@@ -12,20 +12,33 @@ namespace Torres_de_Hanoi
         /*TODO: Implementar métodos*/
         public void mover_disco(Pila a, Pila b)
         {
-            if (a.Top > b.Top)
+            if (!haySolucion(Pila.discosTotal,b))
             {
-                a.push(b.pop());
+                if (a.isEmpty())
+                {
+                    a.push(b.pop());
+                }
+                else if (b.isEmpty())
+                {
+                    b.push(a.pop());
+                }
+                else if (a.Top > b.Top)
+                {
+                    a.push(b.pop());
+                }
+                else
+                {
+                    b.push(a.pop());
+                }
+                
+                movimientos++;
             }
-            if (b.Top > a.Top)
-            {
-                b.push(a.pop());
-            }
-            movimientos++;
+            
         }
 
         public bool haySolucion(int n, Pila fin)
         {
-            if (n == fin.Size)
+            if (n == fin.Elementos.Count)
             {
                 return true;
             }
@@ -35,16 +48,44 @@ namespace Torres_de_Hanoi
             }
         }
 
-
+        public void imprimirTorres(Pila ini, Pila fin, Pila aux)
+        {
+            Console.Write(" ( ");
+            for (int i = 0; i < ini.Elementos.Count; i++)
+            {
+                Console.Write(ini.Elementos[i].Valor);
+            }
+            Console.Write(" ) , ( ");
+            for (int i = 0; i < aux.Elementos.Count; i++)
+            {
+                Console.Write(aux.Elementos[i].Valor);
+            }
+            Console.Write(" ) , ( ");
+            for (int i = 0; i < fin.Elementos.Count; i++)
+            {
+                Console.Write(fin.Elementos[i].Valor);
+            }
+            Console.Write(" ) ");
+            if (movimientos != 0)
+            {
+                Console.Write(" => Movimientos: ");
+                Console.Write(movimientos);
+            }
+            Console.WriteLine();
+        }
         public int iterativo(int n, Pila ini, Pila fin, Pila aux)
         {
+            imprimirTorres(ini, fin, aux);
             if (n % 2 == 0)
             {
-                while (!haySolucion(n,fin))
+                while (!haySolucion(n, fin))
                 {
                     mover_disco(ini, aux);
+                    imprimirTorres(ini, fin, aux);
                     mover_disco(ini, fin);
+                    imprimirTorres(ini, fin, aux);
                     mover_disco(aux, fin);
+                    imprimirTorres(ini, fin, aux);
                 }
             }
             else
@@ -52,12 +93,14 @@ namespace Torres_de_Hanoi
                 while (!haySolucion(n, fin))
                 {
                     mover_disco(ini, fin);
+                    imprimirTorres(ini, fin, aux);
                     mover_disco(ini, aux);
+                    imprimirTorres(ini, fin, aux);
                     mover_disco(aux, fin);
+                    imprimirTorres(ini, fin, aux);
                 }
             }
-            return n; //o movimientos?
+            return n;
         }
-
     }
 }
